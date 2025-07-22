@@ -1,57 +1,118 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 332 81% 14%;
-    --card: 0 0% 100%;
-    --card-foreground: 332 81% 14%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 332 81% 14%;
-    --primary: 332 81% 29%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 332 30% 95%;
-    --secondary-foreground: 332 81% 14%;
-    --muted: 332 30% 95%;
-    --muted-foreground: 332 20% 50%;
-    --accent: 332 30% 95%;
-    --accent-foreground: 332 81% 14%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 332 30% 90%;
-    --input: 332 30% 90%;
-    --ring: 332 81% 29%;
-    --radius: 0.5rem;
-  }
+@theme {
+  /* Container settings */
+  --container-center: true;
+  --container-padding: 2rem;
+  --container-screen-2xl: 1400px;
 
-  .dark {
-    --background: 332 81% 14%;
-    --foreground: 210 40% 98%;
-    --card: 332 81% 14%;
-    --card-foreground: 210 40% 98%;
-    --popover: 332 81% 14%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 332 65% 65%;
-    --primary-foreground: 332 81% 14%;
-    --secondary: 332 50% 20%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 332 50% 20%;
-    --muted-foreground: 332 20% 70%;
-    --accent: 332 50% 20%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 332 50% 20%;
-    --input: 332 50% 20%;
-    --ring: 332 65% 65%;
+  /* Your custom layl colors */
+  --color-layl-50: #fdf2f8;
+  --color-layl-100: #fce7f3;
+  --color-layl-200: #fbcfe8;
+  --color-layl-300: #f9a8d4;
+  --color-layl-400: #f472b6;
+  --color-layl-500: #ec4899;
+  --color-layl-600: #db2777;
+  --color-layl-700: #be185d;
+  --color-layl-800: #9d174d;
+  --color-layl-900: #831843;
+  --color-layl-950: #500724;
+
+  /* shadcn/ui color system - Light mode */
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(9% 0.005 286);
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(9% 0.005 286);
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(9% 0.005 286);
+  --color-primary: oklch(9% 0.005 286);
+  --color-primary-foreground: oklch(98% 0.001 286);
+  --color-secondary: oklch(96% 0.001 286);
+  --color-secondary-foreground: oklch(9% 0.005 286);
+  --color-muted: oklch(96% 0.001 286);
+  --color-muted-foreground: oklch(47% 0.004 286);
+  --color-accent: oklch(96% 0.001 286);
+  --color-accent-foreground: oklch(9% 0.005 286);
+  --color-destructive: oklch(60% 0.204 26);
+  --color-destructive-foreground: oklch(98% 0.001 286);
+  --color-border: oklch(91% 0.002 286);
+  --color-input: oklch(91% 0.002 286);
+  --color-ring: oklch(9% 0.005 286);
+
+  /* Border radius */
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: oklch(9% 0.005 286);
+    --color-foreground: oklch(98% 0.001 286);
+    --color-card: oklch(9% 0.005 286);
+    --color-card-foreground: oklch(98% 0.001 286);
+    --color-popover: oklch(9% 0.005 286);
+    --color-popover-foreground: oklch(98% 0.001 286);
+    --color-primary: oklch(98% 0.001 286);
+    --color-primary-foreground: oklch(9% 0.005 286);
+    --color-secondary: oklch(18% 0.005 286);
+    --color-secondary-foreground: oklch(98% 0.001 286);
+    --color-muted: oklch(18% 0.005 286);
+    --color-muted-foreground: oklch(65% 0.004 286);
+    --color-accent: oklch(18% 0.005 286);
+    --color-accent-foreground: oklch(98% 0.001 286);
+    --color-destructive: oklch(31% 0.135 26);
+    --color-destructive-foreground: oklch(98% 0.001 286);
+    --color-border: oklch(18% 0.005 286);
+    --color-input: oklch(18% 0.005 286);
+    --color-ring: oklch(84% 0.002 286);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+/* Manual dark mode class override (for your ThemeProvider) */
+.dark {
+  --color-background: oklch(9% 0.005 286);
+  --color-foreground: oklch(98% 0.001 286);
+  --color-card: oklch(9% 0.005 286);
+  --color-card-foreground: oklch(98% 0.001 286);
+  --color-popover: oklch(9% 0.005 286);
+  --color-popover-foreground: oklch(98% 0.001 286);
+  --color-primary: oklch(98% 0.001 286);
+  --color-primary-foreground: oklch(9% 0.005 286);
+  --color-secondary: oklch(18% 0.005 286);
+  --color-secondary-foreground: oklch(98% 0.001 286);
+  --color-muted: oklch(18% 0.005 286);
+  --color-muted-foreground: oklch(65% 0.004 286);
+  --color-accent: oklch(18% 0.005 286);
+  --color-accent-foreground: oklch(98% 0.001 286);
+  --color-destructive: oklch(31% 0.135 26);
+  --color-destructive-foreground: oklch(98% 0.001 286);
+  --color-border: oklch(18% 0.005 286);
+  --color-input: oklch(18% 0.005 286);
+  --color-ring: oklch(84% 0.002 286);
+}
+
+/* Keyframes for animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
   }
-  body {
-    @apply bg-background text-foreground;
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
   }
 }
